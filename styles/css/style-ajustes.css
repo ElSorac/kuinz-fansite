@@ -1,0 +1,79 @@
+.cuadro{
+width:800px;
+margin:0 auto;
+position:absolute; 
+top: 280px;
+left: 660px;
+}
+.cuadro-info{
+width:50%;
+z-index:10; padding:30px; 
+background:#424242; 
+border-radius:15px 0 15px 0;
+border:1px solid #000; }
+body{
+margin:0;
+padding:0;
+background: #10498F url(https://v2.kekocity.com/imagesnew/home/fondodia2.png);background-repeat: repeat-x;
+background-position: center top; 
+background-attachment:fixed;
+}
+.btnkc{
+cursor:pointer;
+margin-top:-2px;
+margin-left:2px;
+border-radius:4px;
+border:1px solid #fff;
+background:url(https://v2.kekocity.com/imagesnew/home/btnkc2.png);
+color:#fff;
+font-weight:bold;
+height:34px;
+text-align:center;
+font-family: var(--font-formulario);
+font-size:12px;
+padding-left:20px;
+padding-right:20px;
+}
+.btnkc:Hover{
+box-shadow: 0px 0px 1px 1px #1A6489;
+}
+.biginputkc{
+margin:5px;
+outline:none;
+border-radius:5px;
+height:30px;
+width:260px;
+border: 1px solid #8E8E8E;
+padding:5px 10px;
+font-size: 15px;
+font-family: var(--font-formulario);
+font-weight: bold;
+}
+.biginputkc:Hover{
+box-shadow: 0px 0px 1px 1px #1A6489;
+}
+
+:root {
+     --font-formulario: Corbel;
+}
+.h1-reset{
+font-size: 30px;
+font-family: var(--font-formulario);
+font-weight: bolder;
+margin:2px;
+color:#fff;
+}
+.h2-reset{
+font-size:20px;
+font-family: var(--font-formulario);
+font-weight: lighter;
+margin:2px;
+color: #FFF;
+}
+.h3-reset{
+font-size: 17px;
+font-family: var(--font-formulario);
+font-weight: lighter;
+margin: 2px;
+color: #fff;
+}
