@@ -18,8 +18,6 @@ $consulta = "SELECT *FROM noticias WHERE id = '".$id."' LIMIT 1";
   if ($verificacion == 0) {
 
     echo "<div class='alert alerta-no alert-dismissible'><button type='button' class='close' data-dismiss='alert'>×</button>$lang[203]</div>";
-
-    echo "<center><div><img style='margin:25px;' src='https://cdn.habtium.com/album/3/Galeria_Habbo/Frank/register4.gif'></div></center></div>";
     include "Templates/Footer.php";
     exit();
   }

@@ -1,46 +1,43 @@
 <?php
 
+# conectare la base de datos
 
+require '../../global.php';
 
-	# conectare la base de datos
+$action = isset($_REQUEST['action']) && $_REQUEST['action'] != null ? $_REQUEST['action'] : '';
 
-require ('../../global.php');
+if ($action == 'ajax') {
+    require '../../hk/pagination.php'; //incluir el archivo de paginación
 
-	$action = (isset($_REQUEST['action'])&& $_REQUEST['action'] !=NULL)?$_REQUEST['action']:'';
+    //las variables de paginación
 
-	if($action == 'ajax'){
+    $page = isset($_REQUEST['page']) && !empty($_REQUEST['page']) ? $_REQUEST['page'] : 1;
 
-		require ('../../hk/pagination.php'); //incluir el archivo de paginación
+    $per_page = 10; //la cantidad de registros que desea mostrar
 
-		//las variables de paginación
+    $adjacents = 4; //brecha entre páginas después de varios adyacentes
 
-		$page = (isset($_REQUEST['page']) && !empty($_REQUEST['page']))?$_REQUEST['page']:1;
+    $offset = ($page - 1) * $per_page;
 
-		$per_page = 10; //la cantidad de registros que desea mostrar
+    //Cuenta el número total de filas de la tabla*/
 
-		$adjacents  = 4; //brecha entre páginas después de varios adyacentes
+    $count_query = $link->query("SELECT count(*) AS numrows FROM usuarios_mensajes_privados ");
 
-		$offset = ($page - 1) * $per_page;
+    if ($row = mysqli_fetch_array($count_query)) {
+        $numrows = $row['numrows'];
+    }
 
-		//Cuenta el número total de filas de la tabla*/
+    $total_pages = ceil($numrows / $per_page);
 
-		$count_query   = $link->query("SELECT count(*) AS numrows FROM usuarios_mensajes_privados ");
+    $reload = 'subir.php';
 
-		if ($row= mysqli_fetch_array($count_query)){$numrows = $row['numrows'];}
+    //consulta principal para recuperar los datos
 
-		$total_pages = ceil($numrows/$per_page);
+    $query = $link->query("SELECT * FROM usuarios_mensajes_privados order by id DESC LIMIT $offset,$per_page");
 
-		$reload = 'subir.php';
+    if ($numrows > 0) {
+?>
 
-		//consulta principal para recuperar los datos
-
-		$query = $link->query("SELECT * FROM usuarios_mensajes_privados order by id DESC LIMIT $offset,$per_page");
-
-		
-
-		if ($numrows>0){
-
-			?>
 
 <table class="table table-striped table-hover ">
 
@@ -71,11 +68,7 @@ require ('../../global.php');
 
 			<tbody>
 
-			<?php
-
-			while($row = mysqli_fetch_array($query)){
-
-				?>
+			<?php while ($row = mysqli_fetch_array($query)) { ?>
 
 				<tr>
 
@@ -99,11 +92,7 @@ require ('../../global.php');
 
 				</tr>
 
-				<?php
-
-			}
-
-			?>
+				<?php } ?>
 
 			</tbody>
 
@@ -111,19 +100,13 @@ require ('../../global.php');
 
 		<div class="table-pagination pull-right">
 
-			<?php echo paginate($reload, $page, $total_pages, $adjacents);?>
+			<?php echo paginate($reload, $page, $total_pages, $adjacents); ?>
 
 		</div>
 
 		
 
-			<?php
-
-			
-
-		} else {
-
-			?>
+			<?php } else { ?>
 
 			<div class="alert alert-warning alert-dismissable">
 
@@ -133,10 +116,7 @@ require ('../../global.php');
 
             </div>
 
-			<?php
-
-		}
-
-	}
+			<?php }
+}
 
 ?>

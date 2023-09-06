@@ -24,10 +24,10 @@ include "../Templates/Hk_Nav.php";
 
          <div class="panel panel-default">
       <div class="panel-heading red">
-					<h3 class="panel-title"><div class="contedor-badge"><img src="https://kuinz-fansite.space/images/kekocity/iconapps.png"></div> <h3 class="panel-title">Hola <b><?php echo "$username"; ?></b>, bienvenido al panel administrativo de <?php echo "$nameweb"; ?></h3>
+					<h3 class="panel-title"><div class="contedor-badge"><img src="../images/kekocity/iconapps.png"></div> <h3 class="panel-title">Hola <b><?php echo "$username"; ?></b>, bienvenido al panel administrativo de <?php echo "$nameweb"; ?></h3>
             </div>
             <div class="panel-body">
-<div style="text-align: center;"> <h2 title="El que no acate las reglas sera dado baja del sitio web."><img src="https://kuinz-fansite.space/images/kekocity/b.png"><img src="https://kuinz-fansite.space/images/kekocity/helper.png"><img src="https://kuinz-fansite.space/images/kekocity/mod1.png"><img src="https://kuinz-fansite.space/images/kekocity/mod2.png"><img src="https://kuinz-fansite.space/images/kekocity/mod3.png"><img src="https://kuinz-fansite.space/images/kekocity/mod4.png"><img src="https://kuinz-fansite.space/images/kekocity/kuinz.png"><br>
+<div style="text-align: center;"> <h2 title="El que no acate las reglas sera dado baja del sitio web."><img src="../images/kekocity/b.png"><img src="../images/kekocity/helper.png"><img src="../images/kekocity/mod1.png"><img src="../images/kekocity/mod2.png"><img src="../images/kekocity/mod3.png"><img src="../images/kekocity/mod4.png"><img src="../images/kekocity/kuinz.png"><br>
 <hr>REGLAS FUNDAMENTALES</h2><hr></div>
      <ul style="color: red; font-family: 'Verdana'; font-style: italic;">
     <li><b>1) No regalar fichas o puntos.</li>

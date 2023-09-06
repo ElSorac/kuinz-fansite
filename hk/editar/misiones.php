@@ -14,52 +14,9 @@ while($row = mysqli_fetch_array($query))
 
 }
 
-if("$rangouser" == "2"){
-
-header("Location: " . $_SERVER['HTTP_REFERER']);
-
+if(in_array($rangouser, array(1,2))){
+  header("Location: ".$_SERVER['HTTP_REFERER']);
   exit;
-
-}
-
-if("$rangouser" == "1"){
-
-header("Location: " . $_SERVER['HTTP_REFERER']);
-
-  exit;
-
-}
-
-if("$rangouser" == "3"){
-
-header("Location: " . $_SERVER['HTTP_REFERER']);
-
-  exit;
-
-}
-
-if("$rangouser" == "4"){
-
-header("Location: " . $_SERVER['HTTP_REFERER']);
-
-  exit;
-
-}
-
-if("$rangouser" == "5"){
-
-header("Location: " . $_SERVER['HTTP_REFERER']);
-
-  exit;
-
-}
-
-if("$rangouser" == "6"){
-
-header("Location: " . $_SERVER['HTTP_REFERER']);
-
-  exit;
-
 }
 
 

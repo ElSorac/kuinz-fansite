@@ -1,254 +1,165 @@
 <?php
    include "../Templates/Hk_Head.php";
-   
-   
-   
    $query = $link->query('SELECT rank FROM usuarios WHERE username = "' .$username. '"');
-   
    while($row = mysqli_fetch_array($query))
-   
    {
-   
      $rangouser = $row['rank'];
-   
    }
-   
-   if("$rangouser" == "2"){
-   
-   header("Location: " . $_SERVER['HTTP_REFERER']);
-   
-     exit;
-   
-   }
-   
-   if("$rangouser" == "1"){
-   
-   header("Location: " . $_SERVER['HTTP_REFERER']);
-   
-     exit;
-   
-   }
-   
-   if("$rangouser" == "3"){
-   
-   header("Location: " . $_SERVER['HTTP_REFERER']);
-   
-     exit;
-   
-   }
-
-   if("$rangouser" == "4"){
-   
-   header("Location: " . $_SERVER['HTTP_REFERER']);
-   
-     exit;
-   
-   }
-
-    if("$rangouser" == "5"){
-   
-   header("Location: " . $_SERVER['HTTP_REFERER']);
-   
-     exit;
-   
-   }
-   
-   
-    if("$rangouser" == "6"){
-   
-   header("Location: " . $_SERVER['HTTP_REFERER']);
-   
-     exit;
-   
-   }
-
-    if("$rangouser" == "7"){
-   
-   header("Location: " . $_SERVER['HTTP_REFERER']);
-   
-     exit;
-   
-   }
-   
+   if(in_array($rangouser, array(1,2,3,4))){
+    header("Location: ".$_SERVER['HTTP_REFERER']);
+    exit;
+    }
    include "../Templates/Hk_Nav.php";
-   
-   ?>
-<style type="text/css">
- .cuadro{
-     width: 600px;
-     margin:0 auto;
-}
- .cuadro-info{
-    align-content: center;
-     width:50%;
-     z-index:10;
-     padding:30px;
-     background:#424242;
-     border-radius:15px 0 15px 0;
-     border:1px solid #000;
-}
- .btnkc{
-     cursor:pointer;
-     margin-top:-2px;
-     margin-left:2px;
-     border-radius:4px;
-     border:1px solid #fff;
-     background:url(https://v2.kekocity.com/imagesnew/home/btnkc2.png);
-     color:#fff;
-     font-weight:bold;
-     height:34px;
-     text-align:center;
-     font-family: var(--font-formulario);
-     font-size:12px;
-     padding-left:20px;
-     padding-right:20px;
-}
- .btnkc:Hover{
-     box-shadow: 0px 0px 1px 1px #1A6489;
-}
- .biginputkc {
-     margin: 5px;
-     outline: none;
-     border-radius: 5px;
-     height: 30px;
-     width: 200px;
-     border: 1px solid #8E8E8E;
-     padding: 5px 10px;
-     font-size: 15px;
-     font-family: var(--font-formulario);
-     font-weight: bold;
-}
- .biginputkc:Hover{
-     box-shadow: 0px 0px 1px 1px #1A6489;
-}
- :root {
-     --font-formulario: Corbel;
-}
- .h1-reset{
-     font-size: 30px;
-     font-family: var(--font-formulario);
-     font-weight: bolder;
-     margin:2px;
-     color:#fff;
-}
- .h2-reset{
-     font-size:20px;
-     font-family: var(--font-formulario);
-     font-weight: lighter;
-     margin:2px;
-     color: #FFF;
-}
- .h3-reset{
-     font-size: 17px;
-     font-family: var(--font-formulario);
-     font-weight: lighter;
-     margin: 2px;
-     color: #fff;
-}
- .select {
-     width:100px;
-     height:40px;
-}
- .option {
-     min-height:40px;
-     align-items:center;
-     background:#fff;
-     border-top:#fff solid 1px;
-     top:0;
-     width: 100%;
-     pointer-events:none;
-     order:2;
-     z-index:1;
-}
- .option:hover {
-     background:#666;
-}
- .select:focus .option {
-     position:relative;
-     pointer-events:all;
-}
-.valido {
-    background-color: rgb(9, 162, 9);
+?>
+<section class="form-section" style="margin-bottom: 80px;">
+   <div class="form-new">
+        <div class="form-head">
+            <i class="bi bi-gift-fill"><font>Enviar premio al keko ganador. (FORMULARIO DE STAFF)</font></i>
+        </div>
+        <form method="post">
+            <label for="username"><i class="bi bi-person"></i> Nombre de usuario</label>
+            <input type="text" name="username" placeholder="Keko ganador">
+            <label for="tipomoneda"><i class="bi bi-coin"></i> Tipo de entrega</label>
+            <select name="tipomoneda">
+                <option value="fichas">Fichas</option>
+                <option value="puntos">Puntos</option>
+                <option value="tokens">Tokens</option>
+            </select>
+            <label for="motivo"><i class="bi bi-chat-quote"></i> Motivo de la entrega</label>
+            <input type="text" name="motivo" placeholder="Nombre del evento">
+            <label for="organizador"><i class="bi bi-person-gear"></i> Organizador</label>
+            <input type="text" name="organizador" placeholder="Nombre del keko">
+            <label for="cantidad"><i class="bi bi-box-seam"></i> Cantidad <b>(Para quitar ejemplo: -10)</b></label>
+            <input type="number" name="cantidad" placeholder="Cantidad">
+            <button type="submit" class="form-btn f-right">Enviar</button>
+        </form>
+        <?php
+    if (isset($_POST['username']) && isset($_POST['tipomoneda']) && isset($_POST['motivo']) && isset($_POST['organizador']) && isset($_POST['cantidad'])) {
+        #Sanamos los datos
+        $user = mysqli_real_escape_string($link, strip_tags($_POST['username']));
+        $tipomoneda = mysqli_real_escape_string($link, strip_tags(strtolower($_POST['tipomoneda'])));
+        $motivo = mysqli_real_escape_string($link, strip_tags($_POST['motivo']));
+        $organizador = mysqli_real_escape_string($link, strip_tags($_POST['organizador']));
+        $cantidad = mysqli_real_escape_string($link, strip_tags($_POST['cantidad']));
 
-    color: rgb(255, 255, 255);
-    border-bottom: 3px solid rgba(0, 0, 0, 0.41);
-    text-align: center;
-    width: 90%;
-    border-radius: 5px;
-    margin: 15px auto 10px;
-}
-.contenidoal {
-    background-color: rgb(9, 162, 9);
-    border: 1px solid #000;
-    border-radius: 4px;
-    padding: 7px;
-    color: #fff;
-    width: 200px;
-    min-height: 30px;
-    position: fixed;
-    z-index: 2;
-    font-size: 11px;
-    -webkit-animation: contealmov;
-    -webkit-animation-duration: 12s;
-}
+        $codeError = 0;
+        $saldoActual = 0;
 
-@-webkit-keyframes contealmov {
-    0% {
-        right: -230px;
+        #Verificamos que no este vacia las variables ingresadas.
+        if (!empty($user) && !empty($tipomoneda) && !empty($motivo) && !empty($organizador) && !empty($cantidad)) {
+
+           #Vamos a crear consulta sobre el usuario ingresado
+           $sql = "SELECT * FROM usuarios WHERE username = $user";
+           $resultado = $link->query($sql);
+           
+            #Vamos a obtener nuestros datos
+            $minombre = $_SESSION["username"];
+            $dataSQL = "SELECT * FROM usuarios WHERE username = '$minombre'";
+            $resultData = $link->query($dataSQL);
+            if ($resultData) {
+                while ($miData = mysqli_fetch_array($resultData)) {
+                    $miRango = $miData['rank'];
+                }
+
+                #Sacaremos nombre de nuestro rango
+                $rangoSQL = "SELECT * FROM rangos WHERE id = $miRango";
+                $resultRango = $link->query($rangoSQL);
+                if ($resultRango) {
+                    while ($dataRango = mysqli_fetch_array($resultRango)) {
+                        $nameMyRank = $dataRango['nombre'];
+                    }
+                } else {
+                    echo "Error al ejecutar la consulta: " . mysqli_error($link);
+                }
+            } else {
+                echo "Error al ejecutar la consulta: " . mysqli_error($link);
+            }
+
+           
+           if (!$resultado->num_rows > 0) {
+            if ($tipomoneda == "fichas" || $tipomoneda == "puntos" || $tipomoneda == "tokens") {
+                $userSQL = "SELECT * FROM usuarios WHERE username = '".$user."'";
+                $resultadoUser = $link->query($userSQL);
+                if (!$resultadoUser) {
+                    // Manejar el error
+                    echo "Error al obtener los datos del usuario: " . mysqli_error($link);
+                } else {
+                    while ($row = mysqli_fetch_array($resultadoUser)) {
+                        $saldoActual = $row[$tipomoneda];
+                    }
+                }                
+                if (is_numeric($cantidad)) {
+
+                    /*#Enviamos mensaje de que se enviaron el premio
+                    $mensaje = "<h5><img src=$url/images/$tipomoneda.png> Has recibido $cantidad $tipomoneda departe de $minombre (<b>$nameMyRank</b>) como bonificacion. ($fecha_log)</h5>";
+                    $asunto = "Premio de evento";
+                    $msjSQL = "INSERT INTO usuarios_mensajes_privados (user_enviado,rango,user_recibido,asunto,mensaje,fecha,razon,organizador) VALUES ('".$minombre."','".$nameMyRank."','".$user."','".$asunto."','".$mensaje."','".$fecha_log."','".$motivo."','".$organizador."')";
+                    $link->query($msjSQL);*/
+
+                    #Enviar premio
+                    $sqlUpdate = "UPDATE usuarios SET $tipomoneda = $saldoActual + $cantidad WHERE username = '".$user."'";
+                    $link->query($sqlUpdate);
+
+                    #Guardar log
+                    $accion = "Envio $cantidad de $tipomoneda a $user";
+                    $enviar_log = "INSERT INTO logs (usuario,accion,fecha) values ('".$username."','".$accion."','".$fecha_log."')";
+                    $link->query($enviar_log);
+
+                    if ($cantidad < 0) {
+                        $codeError = 29; // Quitaste correctamente
+                    } else {
+                        $codeError = 28; // Enviadas correctamente
+                    }
+                } else {
+                    $codeError = 3; //En cantidad ingresaron letras.
+                }
+            } else {
+                $codeError = 2; //Error proceso formulario
+            }
+           }  else {
+            $codeError = 1; // El usuario ingresado no existe.
+           }
+
+        } else {
+            $codeError = 6; // Casilla vacia
+        }
     }
-
-    15% {
-        right: 0px;
-    }
-
-    25% {
-        right: 0px;
-    }
-
-    50% {
-        right: 0px;
-    }
-
-    75% {
-        right: 0px;
-    }
-
-    85% {
-        right: 0px;
-    }
-
-    100% {
-        right: -230px;
-    }
-}
-
-         
-</style>
-<main style="padding: 50px;">
-   <div class="cuadro-info">
-      <form action="" method="post" enctype="multipart/form-data">
-         <font class="h2-reset">Nombre de usuario</font>
-         <br>
-         <input type="text" class="biginputkc" name="user" placeholder="Usuario ganador"><br>
-         <br>
-         <font class="h2-reset">Tipo de entrega</font>
-         <br>
-         <select class="biginputkc" style="font-size:13px;width: auto;" name="opcion">
-            <option value="fichas" class="option">Fichas</option>
-           <option value="puntos" class="option">Puntos</option>
-            <option value="tokens" class="option">Tokens (NO ENVIAR MAS DE 1 POR EVENTO)</option>
-         </select>
-         <br>
-         <br>
-         <font class="h2-reset">Cantidad:</font>
-         <br>
-         <input type="number" name="cantidad" class="biginputkc" placeholder="Ingresa cantidad" max="6000" maxlength="6000" required>
-         <br>
-         <br>
-         <center><input type="submit" class="btnkc" name="guardar" value="Hacer entrega"></center>
-      </form>
+    ?>
+    <center>
+        <?php
+        switch ($codeError) {
+            case 1:
+                echo '<div class="form-alert form-error"><p><i class="bi bi-info-circle"></i> El nombre ingresado no existe.</p></div>';
+                break;
+            case 2:
+                echo  '<div class="form-alert form-error"><p><i class="bi bi-info-circle"></i> Error al procesar formulario.</p></div>';
+                break;
+            case 3:
+                echo  '<div class="form-alert form-error"><p><i class="bi bi-info-circle"></i> Error en cantidad solo se permiten numeros.</p></div>';
+                break;
+            case 4:
+                echo  '<div class="form-alert form-error"><p><i class="bi bi-info-circle"></i> No puedes dar una cantidad superior a 30 o inferior a 1.</p></div>';
+                break;
+            case 5:
+                echo  '<div class="form-alert form-error"><p><i class="bi bi-info-circle"></i> No puedes dar una cantidad inferior a 1.</p></div>';
+                break;
+            case 6:
+                echo  '<div class="form-alert form-error"><p><i class="bi bi-info-circle"></i> No puedes dejar ninguna casilla vacia.</p></div>';
+                break;
+            case 28:
+                echo  '<div class="form-alert form-aceptado"><p><i class="bi bi-info-circle"></i> El premio fue enviado correctamente.</p></div>';
+                break;
+            case 29:
+                echo  "<div class='form-alert form-aceptado'><p><i class='bi bi-info-circle'></i> Quitaste correctamente los $tipomoneda.</p></div>";
+                break;
+            default:
+                echo '<div class="form-alert form-informacion"><p><i class="bi bi-info-circle"></i> Llena el formulario con los datos requeridos. :)</p></div>';
+                break;
+        }
+        ?>
+    </center>
    </div>
-</main>
+</section>
 
 <?php
 if ($_POST['cantidad'] && $_POST['user'] && $_POST['opcion']) {
@@ -335,11 +246,8 @@ if ($_POST['cantidad'] && $_POST['user'] && $_POST['opcion']) {
         
         
         // Guardar acción en Logs si se ha iniciado sesión
-        
         $accion = "$lang[379] $_POST[cantidad] $lang[386] $_POST[user]";
-        
         $enviar_log = "INSERT INTO logs (usuario,accion,fecha) values ('" . $username . "','" . $accion . "','" . $fecha_log . "')";
-        
         $link->query($enviar_log);
         
         // Log guardado en Base de datos

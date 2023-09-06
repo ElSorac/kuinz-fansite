@@ -4,23 +4,20 @@
       <?php echo"$meta"; ?>
       <title><?php echo"$nameweb"; ?> - Fansite KekoCity</title>
       <!-- Favicon -->
-      <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/ico/apple-touch-icon-144.png">
-      <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114.png">
-      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/apple-touch-icon-72.png">
-      <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57.png">
-      <link rel="shortcut icon" href="images/favicon.png">
+      <link rel="icon" type="image/png" href="/images/favicon.png">
       <!-- Cierre de Favicon -->
       <!-- // Stylesheets // -->
       
-      
+      <!-- Option 1: Include in HTML -->
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
       <link href="../../styles/css/bootstrap.min.css" rel="stylesheet">
-            <link href="styles/css/nav-styles.css" rel="stylesheet">
-        
-        
-        <script src='https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js'></script>
+      <link href="styles/css/nav-styles.css" rel="stylesheet">
+      <link rel="stylesheet" href="styles/css/sorac.css?<?php echo filemtime('./styles/css/sorac.css'); ?>">
+      
+      <script type="text/javascript" src="./styles/js/app.js?<?php echo filemtime('./styles/js/app.js'); ?>"></script>
 
-            <script src="/styles/js/cursor.min.js"></script>
-
+      <script src='https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js'></script>
+      <script src="/styles/js/cursor.min.js"></script>
       <script src="/styles/js/jquery.min.js"></script>
       <script src="/styles/js/sweetalert2.min.js"></script>
 

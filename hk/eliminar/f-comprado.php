@@ -4,16 +4,8 @@ while($row = mysqli_fetch_array($query))
 {
   $rangouser = $row['rank'];
 }
-if("$rangouser" == "2"){
-header("Location: " . $_SERVER['HTTP_REFERER']);
-  exit;
-}
-if("$rangouser" == "1"){
-header("Location: " . $_SERVER['HTTP_REFERER']);
-  exit;
-}
-if("$rangouser" == "3"){
-header("Location: " . $_SERVER['HTTP_REFERER']);
+if(in_array($rangouser, array(1,2,3))){
+  header("Location: ".$_SERVER['HTTP_REFERER']);
   exit;
 }
 
@@ -39,7 +31,7 @@ $link->query($enviar_log);
   echo "<br><div class='alerta-si'>Elimino furni de su mochila a $_POST[user]</div>";
 }
 	
-}
+
 header("Location: " . $_SERVER['HTTP_REFERER']);
 
 

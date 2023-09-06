@@ -1,0 +1,9 @@
+.custom p {
+    margin: 5px;
+    }
+    .custom img {
+    background-color: #d3d3d370;
+    padding: 5px;
+    border-radius: 100%;
+    margin-left: 3px;
+}

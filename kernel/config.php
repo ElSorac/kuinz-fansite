@@ -7,10 +7,10 @@
 $dbhost = "localhost";
 
 // Usuario user
-$dbusername = "kuinz";
+$dbusername = "root";
 
-// Contraseña , password
-$dbuserpass = "o2IHBaBr4o";
+// Contraseï¿½a , password
+$dbuserpass = "";
 
 // Nombre de base de datos db
 $dbname = "fansite";
@@ -18,7 +18,7 @@ $dbname = "fansite";
 // Codigo de contador de usuarios
 $contador = 'rg0uvc6goful';
 
-$language = 'es'; // es -> español | en -> english | br -> Portugues
+$language = 'es'; // es -> espaï¿½ol | en -> english | br -> Portugues
 
 
 // ---------------------------------------------
@@ -124,6 +124,8 @@ if (isset($_COOKIE['id_extreme']))
 
 }
 
+$ano_actual = date("Y");
+
 $username = $_SESSION['username'];
 
 $usuario_activo = $_SESSION['username'];
@@ -134,7 +136,7 @@ $usuario_activo = $_SESSION['username'];
 // Esto tomara la ip del visitante con esto se haran funciones que sea necesaria la ip
 
 
-$ip_actual = $_SERVER["REMOTE_ADDR"];
+$ip_actual = $_SERVER["HTTP_CF_CONNECTING_IP"] ?? $_SERVER["REMOTE_ADDR"];
 
 // ---------------------------------------------------------------------------
 

@@ -1,15 +1,22 @@
 <?php
    $verCuenta = $link->query('SELECT * FROM usuarios WHERE username = "' . $_SESSION['username'] . '"');
    $miCuenta = $verCuenta->fetch_assoc();
+
+
    
    $username = $_GET['user'];
-   
    $consulta = "SELECT *FROM usuarios WHERE username = '$username' LIMIT 1";
-   
    $filas = $link->query($consulta);
-   
    $columnas = mysqli_fetch_assoc($filas);
    
+   // Sacamos nombre del rango
+   $sqlRango = "SELECT * FROM rangos WHERE id = '".$columnas['rank']."'";
+   $resultRango = $link->query($sqlRango);
+   while ($dataRango = mysqli_fetch_array($resultRango)) {
+      $rangoUser = $dataRango['nombre'];
+      $rangoMision = $dataRango['mision'];
+   }
+
    $verificacion = mysqli_num_rows($filas);
    
    if ($verificacion == 0)
@@ -17,7 +24,7 @@
    
        echo "<div class='alert alerta-no alert-dismissible'><button type='button' class='close' data-dismiss='alert'>×</button>$lang[111]</div>";
    
-       echo "<center><div><img style='margin:25px;' src='https://kuinz-fansite.space/images/perdido.png'></div></center>";
+       echo "<center><div><img style='margin:25px;' src='./images/perdido.png'></div></center>";
    
        include "Templates/Footer.php";
    
@@ -50,15 +57,19 @@
                         ">
                         <img style="border: 2px solid #fff;border-radius:100%;width:100px;height:100px; margin-top:50px;margin-left:-280px;position:absolute;" id="miniyoperfilima" src="<?php echo $columnas['avatar']; ?>">
                         <div class="titulow" style="color:#fff;font-size:24px;position:absolute;margin-left:-80px;margin-top:50px;">
-                           <?php echo $columnas['username']; ?>   <?php if ("$columnas[verificado]" == "Si")
-                              { ?>
-                           <img style="width:16px;" src="/images/verificado.png">
-                           <?php
-                              }
-                              
-                              ?>
+                           <?php echo $columnas['username']; ?>
+                           <?php if ("$columnas[verificado]" == "Si"){ echo '<sup title="Usuario verificado"><i class="bi bi-patch-check-fill" style="color: #00C1FF;"></i></sup>';}?>
                            <br>
-                           <div style="color:#fff;font-size:12px;"><?php echo $columnas['mision']; ?> <br><br> <img src="/images/placas/<?php echo $columnas['rank']; ?>.png"></div>
+                           <div style="color:#fff;font-size:12px;">
+                              <?php echo $columnas['mision']; ?> 
+                              <br><br> 
+                              <img src="/images/placas/<?=strtolower($rangoUser)?>.png">
+                              <?php
+                              if ($columnas['soyfundador'] == 1) {
+                                 echo "<img src=\"/images/placas/fundador.png\">";
+                              }
+                              ?>
+                           </div>
                         </div>
                         <button class="cabbtn fright" id="newbtn_bits"><span id="bolibits" class="boli naranja" style="margin-top:65px;"> <?php echo $columnas['fichas']; ?></span><img src="./images/fichas.png"></button> <button class="cabbtn fright" id="newbtn_bits"><span id="bolibits" class="boli cyan" style="margin-top:65px;"> <?php echo $columnas['puntos']; ?></span><img src="./images/puntos.png"></button> <button class="cabbtn fright" id="newbtn_bits"><span id="bolibits" class="boli rojo" style="margin-top:65px;"> <?php echo $columnas['tokens']; ?></span><img src="./images/tokens.png"></button> 
                      </div>
@@ -167,10 +178,10 @@
                               }
                               else
                               { ?>
-                           <a class="seccion-perfil" href="ajustes.php"><img src=" https://images-kuinz.online/i/ICON%2520(2).png">| <?php echo $lang[17]; ?></a></li>
-                           <a class="seccion-perfil" href="ajustes.php?amigos"><img src="https://images-kuinz.online/i/ICON%2520(3).png">| <?php echo $lang[60]; ?></a></li>
-                           <a class="seccion-perfil" href="ajustes.php?mensajes"><img src="https://images-kuinz.online/i/ICON%2520(4).png">| <?php echo $lang[61]; ?></a></li>
-                           <a style="display: none;" class="seccion-perfil" href="ajustes.php?regalos"><img src="https://images-kuinz.online/i/ICON%2520(1).png">| <?php echo $lang[62]; ?></a></li>
+                           <a class="seccion-perfil" href="ajustes.php"><i class="bi bi-nut"></i> <?php echo $lang[17]; ?></a></li>
+                           <a class="seccion-perfil" href="ajustes.php?amigos"><i class="bi bi-people"></i> <?php echo $lang[60]; ?></a></li>
+                           <a class="seccion-perfil" href="ajustes.php?mensajes"><i class="bi bi-chat-square-dots"></i> <?php echo $lang[61]; ?></a></li>
+                           <a style="display: none;" class="seccion-perfil" href="ajustes.php?regalos"><i class="bi bi-gift"></i> <?php echo $lang[62]; ?></a></li>
                            <?php
                               } ?>
                         </div>
@@ -644,8 +655,8 @@
                               <td>
                                  <img src="./images/rango.png"> <?php echo $lang[122]; ?>:
                               </td>
-                              <td>
-                                 <?php echo $columnas['rank']; ?>
+                              <td title='<?=$rangoMision?>'>
+                                 <?=$rangoUser?> <?php if($columnas['soyfundador'] == 1){ echo '<b>(Fundador del Fansite)</b>';}?>
                               </td>
                            <tr>
                               <?php if ("$columnas[mostrarnombreapellido]" == "Si")

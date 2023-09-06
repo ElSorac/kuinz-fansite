@@ -1,4 +1,5 @@
-$(document).ready(function () { /*Obtenemos el evento Submit, este ejecuta cuando el usuario hace click al boton comentar#comentario_ajax es el id del formulario de donde tratamos de enviar el comentario, si tu formulario tiene otro id tenes que cambiar este acontinucion*/
+$(document).ready(function () { 
+	/*Obtenemos el evento Submit, este ejecuta cuando el usuario hace click al boton comentar#comentario_ajax es el id del formulario de donde tratamos de enviar el comentario, si tu formulario tiene otro id tenes que cambiar este acontinucion*/
 	$("#comentarios_ajax").submit(function () {
 		var noticia_id = $("#user_id").val();
 		var user_id = $("#noticia_id").val();

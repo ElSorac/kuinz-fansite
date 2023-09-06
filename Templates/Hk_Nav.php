@@ -67,7 +67,7 @@ if ($_SESSION["logeado"] == "SI")
    
                  <li><a href='$url/hk/index.php'>$lang[1]</a></li>";
 
-    if ("$rangouser" >= "$rango4")
+    if ("$rangouser" >= 3)
     {
 
         echo "<li class='dropdown'>
@@ -94,69 +94,45 @@ if ($_SESSION["logeado"] == "SI")
 
     }
 
-    if ("$rangouser" >= "$rango5")
+    if ("$rangouser" >= 3)
     {
-
-        echo "<li class='dropdown'>
+?>
+    <li class='dropdown'>
    
    <a href='#' class='dropdown-toggle' data-toggle='dropdown' role='button' aria-haspopup='true' aria-expanded='false'>Moderador <span class='caret'></span></a>
    
    <ul class='dropdown-menu'>
    
     
-   <li><a href='$url/hk/entregas.php'>Premios</a></li>
+   <li><a href='<?=$url?>/hk/entregas.php'>Premios</a></li>
+
+    <li><a href='<?=$url?>/hk/quitar-foto.php'>Quitar foto</a></li>
    
-   <li><a href='$url/hk/empresa.php'>Empresa</a></li>
+   <li><a href='<?=$url?>/hk/mensajes.php'>Mensajes</a></li>
+
+   <li style='display:none'><a href='<?=$url?>/hk/regalos.php'>Regalos</a></li>
+
+   <li><a href='<?=$url?>/hk/comentarios.php'>Comentarios</a></li>
+
+   <li><a href='<?=$url?>/hk/ban.php'>Banear</a></li>
+
+   <li><a href='<?=$url?>/hk/reportes.php'>Reportes</a></li>
+   <li><a href='<?=$url?>/hk/users.php'>Lista usuarios</a></li>
+   <?php
+   if ($rangouser >= 4) {
+   ?>
    
-   <li><a href='$url/hk/users.php'>$lang[282]</a></li>
-
-    <li><a href='$url/hk/quitar-foto.php'>Quitar foto</a></li>
-   
-   <li><a href='$url/hk/mensajes.php'>$lang[20]</a></li>
-
-   <li style='display:none'><a href='$url/hk/regalos.php'>$lang[22]</a></li>
-
-   <li><a href='$url/hk/comentarios.php'>$lang[130]</a></li>
-
-   <li><a href='$url/hk/ban.php'>$lang[274]</a></li>
-
-   <li><a href='$url/hk/reportes.php'>$lang[273]</a></li>
-   
+   <li><a href='<?=$url?>/hk/puntos-comprados.php'>Puntos comprados</a></li>      
+   <li><a href='<?=$url?>/hk/furni.php'>Catalogo Fansite</a></li>
+   <li><a href='<?=$url?>/hk/ricos.php'>U. con mas Fichas</a></li>
+   <li><a href='<?=$url?>/hk/ricos-p.php'>U. con mas Puntos</a></li>
+   <?php } ?>
    </ul>
-   
-   </li>";
+   </li>
 
-    }
-
-    if ("$rangouser" >= "$rango7")
-    {
-
-        echo "<li class='dropdown'>
-   
-   <a href='#' class='dropdown-toggle' data-toggle='dropdown' role='button' aria-haspopup='true' aria-expanded='false'>$rango_7<span class='caret'></span></a>
-   
-   <ul class='dropdown-menu'>
-      
-   <li><a href='$url/hk/entregas.php'>Premios</a></li>
-
-    <li><a href='$url/hk/puntos-comprados.php'>Puntos comprados</a></li>
-
-   <li><a href='$url/hk/ascender.php'>Equipo Kuinz</a></li>
-      
-   <li><a href='$url/hk/furni.php'>Catalogo Fansite</a></li>
-   
-   <li><a href='$url/hk/ricos.php'>U. con mas Fichas</a></li>
-   
-   <li><a href='$url/hk/ricos-p.php'>U. con mas Puntos</a></li>
-   
-   
-   </ul>
-   
-   </li>";
-
-    }
-
-    if ("$rangouser" >= 8)
+  <?php  }?>
+  <?php
+    if ("$rangouser" >= 5)
     {
 
         echo "<li class='dropdown'>
@@ -164,8 +140,6 @@ if ($_SESSION["logeado"] == "SI")
    <a href='#' class='dropdown-toggle' data-toggle='dropdown' role='button' aria-haspopup='true' aria-expanded='false'>Staff<span class='caret'></span></a>
    
    <ul class='dropdown-menu'>
-   
-   <li><a href='$url/hk/entregas2.0.php'>Premios</a></li>
 
    <li><a href='$url/hk/ascender2.0.php'>Equipo Kuinz</a></li>
 
@@ -183,7 +157,7 @@ if ($_SESSION["logeado"] == "SI")
 
     }
 
-    if ("$rangouser" >= 8)
+    if ("$rangouser" >= 4)
     {
 
         echo "<li class='dropdown'>
@@ -207,7 +181,7 @@ if ($_SESSION["logeado"] == "SI")
 
     }
 
-    if ("$rangouser" >= 8)
+    if ($username == "Krozox" || $username == "Carlos")
     {
 
         echo "<li class='dropdown'>

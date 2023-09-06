@@ -7,79 +7,66 @@ $cerrar = $lang[18];
 
 function whos_stats($id)
 {
-    $f = json_decode(file_get_contents("http://whos.amung.us/stats/data/?k=" . $id));
+    $f = json_decode(
+        file_get_contents("http://whos.amung.us/stats/data/?k=" . $id)
+    );
     return $f->total_count;
 }
 
 $visitantes = whos_stats("$contador");
 
-if ($visitantes == 1)
-{
-
+if ($visitantes == 1) {
     $texto_visitantes = $lang[14];
-
-}
-else
-{
-
+} else {
     $texto_visitantes = $lang[15];
-
 }
 
-if ($_SESSION["logeado"] == "SI")
-{
-
-    $query = $link->query('SELECT * FROM usuarios WHERE username = "' . $username . '"');
-    while ($row = mysqli_fetch_array($query))
-    {
-        $rango = $row['rank'];
-        $portada_user = $row['portada'];
-        $avatar_user = $row['avatar'];
-        $fichas_user = $row['fichas'];
-        $puntos_user = $row['puntos'];
+if ($_SESSION["logeado"] == "SI") {
+    $query = $link->query(
+        'SELECT * FROM usuarios WHERE username = "' . $username . '"'
+    );
+    while ($row = mysqli_fetch_array($query)) {
+        $rango = $row["rank"];
+        $portada_user = $row["portada"];
+        $avatar_user = $row["avatar"];
+        $fichas_user = $row["fichas"];
+        $puntos_user = $row["puntos"];
     }
 
-    $query = $link->query('SELECT * FROM usuarios_amigos WHERE  (user = "' . $username . '") AND (estado_solicitud = "Pendiente")');
+    $query = $link->query(
+        'SELECT * FROM usuarios_amigos WHERE  (user = "' .
+            $username .
+            '") AND (estado_solicitud = "Pendiente")'
+    );
     $solicitudes = mysqli_num_rows($query);
 
-    if ($solicitudes != 0)
-    {
+    if ($solicitudes != 0) {
         $notificacion_solicitud = "<span class='badge'>$solicitudes</span>";
-    }
-    else
-    {
+    } else {
         $notificacion_solicitud = "";
     }
-}
-else
-{
-    $portada_user = './images/barras/b3.png';
+} else {
+    $portada_user = "./images/barras/b3.png";
     $avatar_user = "./images/avatars/noavatar.png";
 }
 
-if ($_SESSION["logeado"] == "SI")
-{
-
-    $query = $link->query('SELECT tokens FROM usuarios WHERE username = "' . $username . '"');
-    while ($row = mysqli_fetch_array($query))
-    {
-        $tokens_user = $row['tokens'];
+if ($_SESSION["logeado"] == "SI") {
+    $query = $link->query(
+        'SELECT tokens FROM usuarios WHERE username = "' . $username . '"'
+    );
+    while ($row = mysqli_fetch_array($query)) {
+        $tokens_user = $row["tokens"];
     }
-
 }
-if ($_SESSION["logeado"] == "SI")
-{
+if ($_SESSION["logeado"] == "SI") {
     $fichas_puntos = "<button class='cabbtn fright' id='newbtn_bits'><span id='bolibits' class='boli naranja'>$fichas_user</span><img src='./images/fichas.png'></button> <button class='cabbtn fright' id='newbtn_bits'><span id='bolibits' class='boli cyan'>$puntos_user</span><img src='./images/puntos.png'></button>  <button class='cabbtn fright' id='newbtn_bits'><span id='bolibits' class='boli rojo'>$tokens_user</span><img src='./images/tokens.png'></button> ";
-    if ("$rango" >= "3")
-    {
+    if ("$rango" >= "3") {
         $contenido_user = "<span><a style='color:#fff;margin-left: 6px;' href='perfil.php?user=$username'>$username</a></span>
   <a style='color:#fff;margin-left: 8px;' href='ajustes.php'>$lang[17]</a>
   <a style='color:#fff;margin-left: 8px;' href='ajustes.php?mensajes'>$lang[20]</a>
   <a style='color:#fff;margin-left: 8px;' href='ajustes.php?regalos'>$lang[22]</a>
   <a style='color:#fff;margin-left: 8px;' href='kernel/login/cerrar.php'>$lang[23]</a>";
-    }
-    else
-    {
+    } else {
         $contenido_user = "<span><a style='color:#fff;margin-left: 6px;' href='perfil.php?user=$username'>$lang[19]</a></span>
   <a style='color:#fff;margin-left: 8px;' href='ajustes.php'>$lang[17]</a>
   <a style='color:#fff;margin-left: 8px;' href='ajustes.php?mensajes'>$lang[20]</a>
@@ -88,9 +75,7 @@ if ($_SESSION["logeado"] == "SI")
   </<span></span>
   ";
     }
-}
-else
-{
+} else {
     $contenido_user = "<span style='margin-right: 30px;'><a style='color:#fff;' href='login.php'>Iniciar Sesion</a></span><span><a style='color:#fff;' href='registro.php'>$lang[25]</a></span>";
 }
 
@@ -206,51 +191,42 @@ $menu = "$bannertop
 
             ";
 
-$query = $link->query('SELECT rank FROM usuarios WHERE username = "' . $username . '"');
+$query = $link->query(
+    'SELECT rank FROM usuarios WHERE username = "' . $username . '"'
+);
 
-while ($row = mysqli_fetch_array($query))
-
-{
-
-    $rango = $row['rank'];
-
+while ($row = mysqli_fetch_array($query)) {
+    $rango = $row["rank"];
 }
 
-$query = $link->query('SELECT * FROM usuarios_amigos WHERE  (user = "' . $username . '") AND (estado_solicitud = "Pendiente")');
+$query = $link->query(
+    'SELECT * FROM usuarios_amigos WHERE  (user = "' .
+        $username .
+        '") AND (estado_solicitud = "Pendiente")'
+);
 
 $solicitudes = mysqli_num_rows($query);
 
-if ($solicitudes != 0)
-{
-
+if ($solicitudes != 0) {
     $notificacion_solicitud = "<span class='badge'>$solicitudes</span>";
-
-}
-else
-{
-
+} else {
     $notificacion_solicitud = "";
-
 }
 
-if ($_SESSION["logeado"] == "SI")
-{
+if ($_SESSION["logeado"] == "SI") {
 
     echo "$menu";
 
     echo '<ul class="nav navbar-nav navbar-right">';
 
-    if ("$rango" >= "2")
-    {
-        echo '<a href="/shop-elite.php"><button class="app" title="Esto hace referencia que eres Elite en Kuinz." style="position: fixed;z-index: 3; left: 20px; border:none; bottom:20px; cursor: pointer; outline: none; background:none;"><img src="https://kuinz-fansite.space/images/elite-k.png"> <font style="color:rgba(0,0,0,0.6);">Tienda Elite</font></button></a>';
+    if ("$rango" >= "2") {
+        echo '<a href="/shop-elite.php"><button class="app" title="Esto hace referencia que eres Elite en Kuinz." style="position: fixed;z-index: 3; left: 20px; border:none; bottom:20px; cursor: pointer; outline: none; background:none;"><img src="./images/elite-k.png"> <font style="color:rgba(0,0,0,0.6);">Tienda Elite</font></button></a>';
     }
 
-    if ("$rango" >= "3")
-    {
-        echo '<a href="/hk/index.php"><button class="app-mod" title="Panel de Control Administrativo" style="position: fixed;z-index: 4; left: 26px; border:none; bottom:80px; cursor: pointer; outline: none; background:none;"><img src="https://images-kuinz.online/i/icon-hk.png"></button></a>';
+    if ("$rango" >= "3") {
+        echo '<a href="/hk/index.php"><button class="app-mod" title="Panel de Control Administrativo" style="position: fixed;z-index: 4; left: 26px; border:none; bottom:80px; cursor: pointer; outline: none; background:none;"><img src="./images/icon-hk.png"></button></a>';
     }
-
-?>
+    ?>
 
 <style type="text/css">
   .app:hover {
@@ -275,14 +251,9 @@ if ($_SESSION["logeado"] == "SI")
                            
 
 <?php
-}
-else
-{
-
+} else {
     echo "$menu";
-
 }
-
 ?>
 
 </div><!--/.nav-collapse -->

@@ -1,21 +1,15 @@
 <?php
-include "../Templates/Hk_Head.php";
-
-$query = $link->query('SELECT rank FROM usuarios WHERE username = "' .$username. '"');
-while($row = mysqli_fetch_array($query))
-{
-  $rangouser = $row['rank'];
-}
-if("$rangouser" == "2"){
-header("Location: " . $_SERVER['HTTP_REFERER']);
-  exit;
-}
-if("$rangouser" == "1"){
-header("Location: " . $_SERVER['HTTP_REFERER']);
-  exit;
-}
-
-include "../Templates/Hk_Nav.php";
+   include "../Templates/Hk_Head.php";
+   $query = $link->query('SELECT rank FROM usuarios WHERE username = "' .$username. '"');
+   while($row = mysqli_fetch_array($query))
+   {
+     $rangouser = $row['rank'];
+   }
+   if(in_array($rangouser, array(1,2))){
+    header("Location: ".$_SERVER['HTTP_REFERER']);
+    exit;
+    }
+   include "../Templates/Hk_Nav.php";
 ?>
 	  <div class="container">
       <!-- Main component for a primary marketing message or call to action -->
@@ -26,7 +20,11 @@ include "../Templates/Hk_Nav.php";
               <h3 class="panel-title"><?php echo $lang[20]; ?></h3>
             </div>
             <div class="panel-body">
-					 <div style="border-bottom: #ddd solid 1px;padding: 0px 0px 10px 15px;"><a href="eliminar/mensajes.php"><button type="button" class="btn btn-sm btn-danger">Borrar Mensajes</button></a></div>
+					 <?php
+           if ($rangouser >= 5) {
+            echo '<div style="border-bottom: #ddd solid 1px;padding: 0px 0px 10px 15px;"><a href="eliminar/mensajes.php"><button type="button" class="btn btn-sm btn-danger">Borrar Mensajes</button></a></div>';
+           }
+           ?>
                     <div id="loader" style="text-aling:center;margin-left:50%;"> <img src="loader.gif"></div>
 		<div class="outer_div"></div><!-- Datos ajax Final -->
 <div class="col-md-4"></div>
@@ -82,8 +80,8 @@ include "../Templates/Hk_Nav.php";
 include "../Templates/Footer.php";
 
 ?>
-
-        <script>
+ 
+<script>
   $(document).ready(function(){
     load(1);
   });

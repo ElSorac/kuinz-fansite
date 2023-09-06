@@ -6,14 +6,10 @@ while($row = mysqli_fetch_array($query))
 {
   $rangouser = $row['rank'];
 }
-if("$rangouser" == "2"){
-header("Location: " . $_SERVER['HTTP_REFERER']);
+if(in_array($rangouser, array(1,2))){
+  header("Location: ".$_SERVER['HTTP_REFERER']);
   exit;
-}
-if("$rangouser" == "5"){
-header("Location: " . $_SERVER['HTTP_REFERER']);
-  exit;
-}
+  }
 
 include "../Templates/Hk_Nav.php";
 ?>

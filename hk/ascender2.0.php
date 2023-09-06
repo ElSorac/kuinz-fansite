@@ -1,55 +1,17 @@
 <?php
    include "../Templates/Hk_Head.php";
-   
-   
-   
-   $query = $link->query('SELECT rank FROM usuarios WHERE username = "' .$username. '"');
-   
-   while($row = mysqli_fetch_array($query))
-   
-   {
-   
-     $rangouser = $row['rank'];
-   
-   }
-   
-   if("$rangouser" == "2"){
-   
-   header("Location: " . $_SERVER['HTTP_REFERER']);
-   
-     exit;
-   
-   }
-   
-   if("$rangouser" == "1"){
-   
-   header("Location: " . $_SERVER['HTTP_REFERER']);
-   
-     exit;
-   
-   }
-   
-   if("$rangouser" == "3"){
-   
-   header("Location: " . $_SERVER['HTTP_REFERER']);
-   
-     exit;
-   
-   }
 
-   if("$rangouser" == "6"){
-   
-   header("Location: " . $_SERVER['HTTP_REFERER']);
-   
-     exit;
-   
+   $query = $link->query('SELECT rank FROM usuarios WHERE username = "' .$username. '"');
+   while($row = mysqli_fetch_array($query))
+   {
+     $rangouser = $row['rank'];
    }
-   
-   
-   
+   if(in_array($rangouser, array(1,2,3,4))){
+    header("Location: ".$_SERVER['HTTP_REFERER']);
+    exit;
+    }
    include "../Templates/Hk_Nav.php";
-   
-   ?>
+?>
 <style type="text/css">
  .cuadro{
      width: 600px;
@@ -70,7 +32,7 @@
      margin-left:2px;
      border-radius:4px;
      border:1px solid #fff;
-     background:url(https://v2.kekocity.com/imagesnew/home/btnkc2.png);
+     background:url(https://kekocity.com/imagesnew/home/btnkc2.png);
      color:#fff;
      font-weight:bold;
      height:34px;
@@ -229,7 +191,7 @@
                      ?>
                   <tr>
                      <td><font size="1mm"><?php echo "$row[ID]"; ?></font></td>
-                     <td><img class="userperfileindex" style="height: 40px; width: 40px;" src="<?php echo $row[avatar] ?>"><?php echo "$row[username]" ?></td>
+                     <td><img class="userperfileindex" style="height: 40px; width: 40px;" src="<?=$row['avatar']?>"> <?php echo "$row[username]" ?></td>
                      <td><?php echo "$row[ultimavez]"; ?></td>
                      <td><?php echo "$row[email]"; ?></td>
                      <td><?php echo "$row[rank]"; ?></td>
@@ -243,28 +205,20 @@
          </div>
       </div>
       <main style="padding: 50px;">
-   <div class="cuadro-info">
+   <div class="form-new">
       <form action="" method="post" enctype="multipart/form-data">
-         <font class="h2-reset">Nombre de usuario</font>
-         <br>
+         <label>Nombre de usuario</label>
          <input type="text" class="biginputkc" name="user" placeholder="Nombre de usuario" required=""><br>
-         <br>
-         <font class="h2-reset">Rango:</font>
-         <br>
-         <select class="biginputkc" style="font-size:13px;width: auto;" name="rango">
+         <label>Rango:</label>
+         <select name="rango">
              <option class="option" disabled>Elige el rango</option>
              <option value="1" class="option">Usuario</option>
              <option value="2" class="option">Pase Elite</option>
-             <option value="3" class="option">Becario</option>
-             <option value="4" class="option">Helper</option>
-             <option value="5" class="option">Moderador Becario</option>
-             <option value="6" class="option">Moderador</option>
-             <option value="7" class="option">Encargado</option>
-             <option value="8" class="option">Staff</option>
+             <option value="3" class="option">Moderador</option>
+             <option value="4" class="option">Developer</option>
+             <option value="5" class="option">Fundador</option>
          </select>
-         <br>
-         <br>
-         <input type="submit" class="btnkc" name="guardar" value="Ascender">
+         <button type="submit" class="form-btn">Ascender</button>
       </form>
    </div>
 </main>

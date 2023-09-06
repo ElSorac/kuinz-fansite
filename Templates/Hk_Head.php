@@ -12,11 +12,7 @@
       <?php echo"$meta"; ?>
       <title><?php echo $lang[268]; ?> - <?php echo"$nameweb"; ?></title>
       <!-- Favicon -->
-      <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../images/ico/apple-touch-icon-144.png">
-      <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../images/ico/apple-touch-icon-114.png">
-      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../images/apple-touch-icon-72.png">
-      <link rel="apple-touch-icon-precomposed" href="../images/ico/apple-touch-icon-57.png">
-      <link rel="shortcut icon" href="https://images-kuinz.online/i/favicon.png">
+      <link rel="icon" type="image/png" href="../images/favicon.png">
 
       <!-- Cierre de Favicon -->
       <!-- // Stylesheets // -->
@@ -32,6 +28,8 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.miRn.js"></script>
       <![endif]-->
       <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+      <link rel="stylesheet" href="./../styles/css/sorac.css?<?php echo filemtime('./../styles/css/sorac.css'); ?>">
+      <script type="text/javascript" src="./../styles/js/app.js?<?php echo filemtime('./../styles/js/app.js'); ?>"></script>
       <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
          <script>
             $( function() {

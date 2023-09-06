@@ -74,7 +74,7 @@ else
             <div class="panel-heading orange">
                <h3 class="panel-title">
                   <div class='contedor-badge'><img src="https://kekocity.com/imagesnew/game/carritoicono.png"></div>
-                  Ultimos Furnis Tienda
+                  Ultimos Furnis Tienda <?=$_SESSION['id']?>
                </h3>
             </div>
             <div class="panel-body">
@@ -150,16 +150,16 @@ while ($row = mysqli_fetch_array($resultado))
             </div>
          </div>
          <!-- Cierre de Furnis Elite subidas -->
-         <!-- lo del momento xd 
+         
             <div class="panel panel-default">
             	<div class="panel-heading red">
-            		<h3 class="panel-title"><div class='contedor-badge'><img src="https://v2.kekocity.com/images/icon2/luna.png"></div> Lo del momento</h3>
+            		<h3 class="panel-title"><div class='contedor-badge'><img src="https://kekocity.com/images/icon2/luna.png"></div> Lo del momento</h3>
             	</div>
             	<div class="panel-body">
             	<iframe width="358" height="250" src="https://www.youtube.com/embed/BQnp9cu-oUA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             	</div>
             </div>
-             fin momento -->
+             
          <br>
 
          <?php echo $cartel_publicidad; ?>
@@ -185,14 +185,14 @@ $resultado = $link->query("SELECT * FROM banner ORDER BY id DESC limit 6");
 while ($row = mysqli_fetch_array($resultado))
 {
 ?>
-                  <div class="item <?php echo "$row[principal]"; ?>">
-                     <img style="border-radius:10px;" data-src="holder.js/1140x500/auto/#777:#555/text:First slide" alt="<?php echo $nameweb; ?>" src="<?php echo strip_tags($row[imagen]); ?>" data-holder-rendered="true">
+                  <div class="item <?=$row['principal']?>">
+                     <img style="border-radius:10px;" data-src="holder.js/1140x500/auto/#777:#555/text:First slide" alt="<?php echo $nameweb; ?>" src="<?=$row['imagen']?>" data-holder-rendered="true">
                      <div style="float:right;position: absolute;bottom: 0px;right: 0px;background-color: rgba(0, 0, 0, 0.42);width: 100%;height:100%;border-radius: 0px 0px 10px 10px;padding: 15px;">
                         <div class="textpromo">
-                           <b><?php echo strip_tags($row[titulo]); ?></b>
-                           <div class="textpromosmall"><?php echo strip_tags($row[texto]); ?></div>
+                           <b><?=$row['titulo']?></b>
+                           <div class="textpromosmall"><?=$row['texto']?></div>
                         </div>
-                        <br><a href="<?php echo "$row[url_promo]"; ?>" target="_blank"><input class="btn btn-warning" style="margin-top:150px;" type="button" value="Ver Más"></a>
+                        <br><a href="<?=$row['urlpromo']?>" target="_blank"><input class="btn btn-warning" style="margin-top:150px;" type="button" value="Ver Más"></a>
                      </div>
                   </div>
                   <?php
@@ -263,13 +263,7 @@ while ($row = mysqli_fetch_array($resultado))
                            </div>
                            <div class="nameuserperfil">
                               <a style="color: #fff; font size: 3;" href="perfil.php?user=<?php echo $row['username']; ?>"> <b><?php echo "$row[username]"; ?></b>
-                              </a><?php if ("$row[verificado]" == "Si")
-    { ?>
-                              <img style="width:16px;" src="/images/verificado.png">
-                              <?php
-    }
-
-?><br>Fichas: <?php echo "$row[fichas]"; ?> </font>
+                              </a><?php if ($row['verificado'] == "Si"){ echo '<sup title="Usuario verificado"><i class="bi bi-patch-check-fill" style="color: #00C1FF;"></i></sup>';}?><br>Fichas: <?php echo "$row[fichas]"; ?> </font>
                            </div>
                         </center>
                      </div>
@@ -304,13 +298,7 @@ while ($row = mysqli_fetch_array($resultado))
                            </div>
                            <div class="nameuserperfil">
                               <a style="color: #fff; font size: 3;" href="perfil.php?user=<?php echo $row['username']; ?>"> <b><?php echo "$row[username]"; ?> </b>
-                              </a><?php if ("$row[verificado]" == "Si")
-    { ?>
-                              <img style="width:16px;" src="/images/verificado.png">
-                              <?php
-    }
-
-?><br>Puntos: <?php echo "$row[puntos]"; ?> </font>
+                              </a><?php if ($row['verificado'] == "Si"){ echo '<sup title="Usuario verificado"><i class="bi bi-patch-check-fill" style="color: #00C1FF;"></i></sup>';}?><br>Puntos: <?php echo "$row[puntos]"; ?> </font>
                            </div>
                         </center>
                      </div>
@@ -345,13 +333,7 @@ while ($row = mysqli_fetch_array($resultado))
                            </div>
                            <div class="nameuserperfil">
                               <a style="color: #fff; font size: 3;" href="perfil.php?user=<?php echo $row['username']; ?>"> <b><?php echo "$row[username]"; ?> </b>
-                              </a><?php if ("$row[verificado]" == "Si")
-    { ?>
-                              <img style="width:16px;" src="/images/verificado.png">
-                              <?php
-    }
-
-?><br>Tokens: <?php echo "$row[tokens]"; ?> </font>
+                              </a><?php if ($row['verificado'] == "Si"){ echo '<sup title="Usuario verificado"><i class="bi bi-patch-check-fill" style="color: #00C1FF;"></i></sup>';}?><br>Tokens: <?php echo "$row[tokens]"; ?> </font>
                            </div>
                         </center>
                      </div>
@@ -386,13 +368,7 @@ while ($row = mysqli_fetch_array($resultado))
                            </div>
                            <div class="nameuserperfil">
                               <a style="color: #fff; font size: 3;" href="perfil.php?user=<?php echo $row['username']; ?>"> <b><?php echo "$row[username]"; ?> </b>
-                              </a><?php if ("$row[verificado]" == "Si")
-    { ?>
-                              <img style="width:16px;" src="/images/verificado.png">
-                              <?php
-    }
-
-?><br><?php echo "$row[megusta]"; ?> Seguidores</font>
+                              </a><?php if ($row['verificado'] == "Si"){ echo '<sup title="Usuario verificado"><i class="bi bi-patch-check-fill" style="color: #00C1FF;"></i></sup>';}?><br><?php echo "$row[megusta]"; ?> Seguidores</font>
                            </div>
                         </center>
                      </div>

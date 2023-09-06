@@ -4,20 +4,8 @@ while($row = mysqli_fetch_array($query))
 {
   $rangouser = $row['rank'];
 }
-if("$rangouser" == "2"){
-header("Location: " . $_SERVER['HTTP_REFERER']);
-  exit;
-}
-if("$rangouser" == "1"){
-header("Location: " . $_SERVER['HTTP_REFERER']);
-  exit;
-}
-if("$rangouser" == "3"){
-header("Location: " . $_SERVER['HTTP_REFERER']);
-  exit;
-}
-if("$rangouser" == "4"){
-header("Location: " . $_SERVER['HTTP_REFERER']);
+if(in_array($rangouser, array(1,2,3))){
+  header("Location: ".$_SERVER['HTTP_REFERER']);
   exit;
 }
 
@@ -34,7 +22,7 @@ SQL;
 
 $link->query($consulta);
 
-// Guardar acción en Logs si se ha iniciado sesión
+// Guardar acciï¿½n en Logs si se ha iniciado sesiï¿½n
 
 $fecha_log = date ('d-M-Y h:i:s', time());
 $accion = "Elimino el post del app de un helper";

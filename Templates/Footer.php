@@ -4,7 +4,7 @@
 
       <div class="col-md-2" style="padding: 10px;">
 
-         <center><img src="https://www.kuinz-fansite.space/images/keko-fansite.png"></center>
+         <center><img src="<?=$url?>/images/keko-fansite.png"></center>
 
       </div>
 
@@ -22,7 +22,7 @@
 
 <div style="padding: 10px;background-color: #e9ebee;text-align: center;">
 
-   <div class="container">&#169; Copyright 2020-2021 <?php echo $nameweb; ?> <?php echo $lang[201]; ?> | <?php echo $lang[202]; ?> Krozox & Carlos</a></div>
+   <div class="container">&#169; Copyright 2020- <?=$ano_actual?> <?php echo $nameweb; ?> <?php echo $lang[201]; ?> | <?php echo $lang[202]; ?> Krozox & Carlos</a></div>
 
 </div>
 

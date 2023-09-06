@@ -16,7 +16,13 @@ require ('../../global.php');
 		$reload = 'subir.php';
 		//consulta principal para recuperar los datos
 		$query = $link->query("SELECT * FROM usuarios  order by id DESC LIMIT $offset,$per_page");
-		
+
+
+		$query3 = $link->query('SELECT rank FROM usuarios WHERE username = "' .$username. '"');
+		while($row = mysqli_fetch_array($query3))
+		{
+			$rangouser = $row['rank'];
+		}
 		if ($numrows>0){
 			?>
 <table class="table table-striped table-hover ">
@@ -28,7 +34,6 @@ require ('../../global.php');
                               <th><?php echo $lang[125]; ?></th>
 							  <th><?php echo $lang[122]; ?></th>
                               <th><?php echo $lang[415]; ?></th>
-                              <th><?php echo $lang[50]; ?></th>
                               <th><?php echo $lang[140]; ?></th>
 				</tr>
 			</thead>
@@ -39,11 +44,17 @@ require ('../../global.php');
 				<tr>
                               <td><?php echo "$row[ID]"; ?></td>
                               <td><?php echo "$row[username]"; ?></td>
-                              <td><?php echo "$row[ip]"; ?></td>
+                              <td><?php 
+							  if ($rangouser >= 5) {
+								echo "$row[ip]";
+							  } else {
+								echo 'xxx.xxx.xxx.xxx';
+							  }
+							  ?>
+							  </td>
 							  <td><?php echo "$row[pais]"; ?></td>
                               <td><?php echo "$row[rank]"; ?></td>
                               <td><?php echo "$row[fecha]"; ?></td>
-							  <td><?php echo "$row[email]"; ?></td>
                               <td><a href="editar/user.php?id=<?php echo "$row[ID]"; ?>"><button type="button" class="btn btn-sm btn-success"><span class="MPicon-pencil"></span></button></a></td>
 				</tr>
 				<?php

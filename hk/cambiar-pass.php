@@ -1,69 +1,16 @@
 <?php
    include "../Templates/Hk_Head.php";
-   
- 
-   
    $query = $link->query('SELECT rank FROM usuarios WHERE username = "' .$username. '"');
-   
    while($row = mysqli_fetch_array($query))
-   
    {
-   
      $rangouser = $row['rank'];
-   
    }
-   
-   if("$rangouser" == "2"){
-   
-   header("Location: " . $_SERVER['HTTP_REFERER']);
-   
-     exit;
-   
-   }
-   
-   if("$rangouser" == "1"){
-   
-   header("Location: " . $_SERVER['HTTP_REFERER']);
-   
-     exit;
-   
-   }
-   
-   if("$rangouser" == "3"){
-   
-   header("Location: " . $_SERVER['HTTP_REFERER']);
-   
-     exit;
-   
-   }
-   
-   if("$rangouser" == "4"){
-   
-   header("Location: " . $_SERVER['HTTP_REFERER']);
-   
-     exit;
-   
-   }
-   if("$rangouser" == "5"){
-   
-   header("Location: " . $_SERVER['HTTP_REFERER']);
-   
-     exit;
-   
-   }
-
-   if("$rangouser" == "7"){
-   
-   header("Location: " . $_SERVER['HTTP_REFERER']);
-   
-     exit;
-   
-   }
-   
-   
+   if(in_array($rangouser, array(1,2,3,4))){
+    header("Location: ".$_SERVER['HTTP_REFERER']);
+    exit;
+    }
    include "../Templates/Hk_Nav.php";
-   
-   ?>
+?>
 <div class="container">
    <!-- Main component for a primary marketing message or call to action -->
    <div class="row">
@@ -99,17 +46,7 @@
 
                      }else{
 
-                        $cifrado5 = md5($_POST['password']);
-
-                        $cifrado4 = sha1($cifrado5);
-
-                        $cifrado3 = md5($cifrado4);
-
-                        $cifrado2 = sha1($cifrado3);
-
-                        $cifrado1 = md5($cifrado2);
-
-                        $password = md5($cifrado1);
+                        $password = md5(sha1(md5($_POST['password']))); //Cifrado de contraseñas;
 
                      $link->query("UPDATE usuarios SET password='".$password."' WHERE ID=".$user_id.";");//Los 5 cifrado igual a registro, mira la variable cifrado1 no esta o si como en lo de inserta
                      }

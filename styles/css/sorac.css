@@ -1,0 +1,164 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css");
+:root {
+    --color-bg: #46c1f6;
+    --color-principal: #46b6e6;
+}
+.form-section {
+    padding: 40px;
+}
+.form-new{
+    background-color: var(--color-principal);
+    padding: 12px;
+    width: 100%;
+    max-width: 650px;
+    border-radius: 12px;
+    border: 3px solid #b8e8fd71;
+    color: white;
+}
+.form-new form {
+    
+    max-width: 450px;
+    border: 3px solid #b8e8fd71;
+    background-color: var(--color-bg);
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    align-content: left;
+    border-radius: 8px;
+}
+.form-new select {
+    color: #36393f;
+    width: 150px;
+    height: 25px;
+    margin-bottom: 12px;
+    margin: 8px;
+    border-radius: 4px;
+}
+.form-new select:focus {
+    outline: none;
+}
+.form-new input {
+    color: #36393f;
+    width: 200px;
+    height: 20px;
+    margin: 8px;
+    padding: 4px 12px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    border-bottom: 15px;
+}
+.form-new input:hover {
+    height: 25px;
+}
+.form-new label {
+    font-size: 13px;
+    font-weight: 600;
+
+}
+.form-head {
+    background-color: var(--color-bg);
+    margin-bottom: 8px;
+    border-radius: 12px;
+    border: 3px solid #b8e8fd71;
+    display: inline-flex !important;
+    width: 100%;
+}
+.form-head i {
+    color: #abe6ff;
+    margin: 8px;
+    padding: 4px;
+    font-size: 18px;
+}
+.form-head font {
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: bold;
+    margin-left: 8px;
+}
+.form-btn {
+    margin: 8px;
+    max-width: 170px;
+    background-color: #3dcf6e;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 8px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.form-btn:hover {
+    background-color: #34af5d;
+}
+
+.f-left{
+    float: left;
+}
+.f-right{
+    float: right;
+}
+/* Estilo del resumen */
+.form-new summary {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    outline: none;
+    user-select: none;
+    margin: 8px;
+}
+
+.form-new summary span {
+    font-weight: bold;
+    margin-right: 0.5em;
+}
+
+.form-info {
+    background-color: var(--color-bg);
+    padding: 0.5em;
+    margin-bottom: 1em;
+    border-radius: 5px;
+    color: #fff;
+}
+
+.form-new details[open] .content {
+    margin: 8px;
+    background-color: #fff;
+    color: #36393f;
+}
+
+.form-new details {
+    color: #36393f;
+    transition: background-color 0.2s ease-in-out;
+}
+.form-alert {
+    width: auto;
+    max-width: 400px;
+    margin: 8px;
+    color: white;
+    text-align: center;
+    border-radius: 7px;
+}
+.form-alert p{
+    padding: 8px;
+    margin: 8px;
+}
+.form-alert i{
+    margin-right: 6px;
+}
+.form-error {
+    background-color: #b65252;
+}
+.form-informacion {
+    background-color: #92b3fa;
+}
+.form-aceptado {
+    background-color: #6ec957;
+}
+.badge-equipo {
+    position: absolute;
+    display: flex;
+    margin-top: -3cm;
+    margin-left: -9px;
+}
